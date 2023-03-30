@@ -1,0 +1,16 @@
+name: mltradingstocks
+channels:
+  - conda-forge
+  - pytorch
+dependencies:
+  - python=3.8
+  - tensorflow
+  - gym==0.21
+  - pytorch
+  - selenium
+  - beautifulsoup4
+  - pandas
+  - numpy
+  - pip
+  - pip:
+    - stable-baselines3
