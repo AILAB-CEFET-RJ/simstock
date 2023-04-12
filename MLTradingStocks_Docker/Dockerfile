@@ -7,6 +7,9 @@ RUN apt-get update && apt-get upgrade -y
 # Instala dependências do projeto
 RUN apt-get install -y git python3 python3-pip firefox wget unzip curl
 
+# Instala a biblioteca psycopg2
+RUN pip3 install psycopg2-binary
+
 # Instala o gerenciador de pacotes Conda
 RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh && \
     bash miniconda.sh -b -p /opt/conda && \
