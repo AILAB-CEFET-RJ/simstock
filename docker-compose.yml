@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  mltradingstocks:
+    build: ./MLTradingStocks_Docker/
+    container_name: meu-mltradingstocks
+    networks:
+      - simstock
+
+  postgresql:
+    image: postgres
+    container_name: meu-postgresql
+    environment:
+      POSTGRES_PASSWORD: suasenha
+    ports:
+      - 5432:5432
+    volumes:
+      - C:\docker\postgresql_data:/var/lib/postgresql/data
+    networks:
+      - simstock
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: meu-pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: user@domain.com
+      PGADMIN_DEFAULT_PASSWORD: SuperSecret
+    ports:
+      - 5050:80
+    networks:
+      - simstock
+
+networks:
+  simstock:
+    driver: bridge
