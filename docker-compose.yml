@@ -33,3 +33,5 @@ services:
 networks:
   simstock:
     driver: bridge
+volumes:
+      - C:\docker\mltradingstocks_data:/data	
