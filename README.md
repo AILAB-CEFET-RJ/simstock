@@ -103,4 +103,7 @@ docker stop meu-postgresql
 docker stop meu-pgadmin
 ```
 
+### UI
+É necessário executar o comando npm i chart.js para instalação da dependência
+
 Isso irá parar o container sem removê-lo. Os dados do banco de dados PostgreSQL serão mantidos no diretório C:\docker\postgresql_data e estarão disponíveis novamente quando o container for iniciado novamente com o comando docker start.

@@ -1,0 +1,75 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    text-align: center;
+}
+
+#stockList,
+#buyForm,
+#sellForm {
+    width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label,
+input {
+    margin-bottom: 10px;
+}
+
+input[type="submit"] {
+    cursor: pointer;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+}
+
+#stockItems li {
+    margin-bottom: 5px;
+}
+
+.title {
+    text-align: left;
+    margin-left: 20px; /* Ajuste a margem esquerda de acordo com sua preferência */
+}
+
+#searchForm {
+    display: flex; /* Alinhar os elementos em linha */
+    margin-bottom: 20px; /* Adicionar margem inferior para espaçamento */
+    width: 20%; 
+}
+
+#searchInput {
+    flex: 1; /* Expandir o input para ocupar todo o espaço disponível */
+    padding: 10px; /* Adicionar preenchimento interno para espaçamento */
+    margin-right: 10px; /* Adicionar margem direita para espaçamento entre o input e o botão */
+}
+
+/* Estilizar o botão de envio */
+#searchForm button {
+    padding: 10px; /* Adicionar preenchimento interno para espaçamento */
+    background-color: #007bff; /* Definir a cor de fundo do botão */
+    color: #fff; /* Definir a cor do texto do botão */
+    width: 30%; 
+}
+
+#stockList {
+    width: 40%; /* Definir a largura do gráfico */
+    float: left; /* Flutuar o gráfico à esquerda */
+    margin-right: 20px; /* Adicionar margem à direita para espaçamento entre o gráfico e a barra de busca */
+}
+
+#buyForm,
+#sellForm {
+    transform: translateX(100px);    
+}
