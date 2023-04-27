@@ -103,6 +103,11 @@ docker stop meu-postgresql
 docker stop meu-pgadmin
 ```
 
+### 6. Verificar ip do Windows dentro do Ubuntu WSL:
+```bash
+cat /etc/resolv.conf | grep nameserver | awk '{print $2}'
+```
+
 ### UI
 É necessário executar o comando npm i chart.js para instalação da dependência
 
