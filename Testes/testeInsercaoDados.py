@@ -2,10 +2,10 @@ import psycopg2
 
 # estabelece a conexão com o banco de dados
 conn = psycopg2.connect(
-    host="172.26.48.1",
+    host="172.26.48.1", #Para descobrir o IP do Windows no Ubuntu via WSL2 execute no Ubuntu: cat /etc/resolv.conf | grep nameserver | awk '{print $2}'
     database="dados_simstock",
     user="postgres",
-    password="minhasenha",
+    password="suasenha",
     port='5432'
 )
 
