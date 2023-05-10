@@ -27,6 +27,36 @@ function sellStock(event) {
     const sellStockSymbol = document.getElementById;
 }
 
+//Função para consumir os dados do BD
+function obterDados() {
+    $.ajax({
+      url: 'http://localhost:3000/dados',
+      type: 'GET',
+      success: function(data) {
+        exibirDados(data); // Chama a função exibirDados para mostrar os dados recebidos
+      },
+      error: function(xhr, status, error) {
+        console.error('Erro na requisição:', error);
+      }
+    });
+  }
+
+  function exibirDados(data) {
+    // Limpa o conteúdo atual da div "dados"
+    $('#dados').empty();
+
+    // Itera sobre os dados recebidos e os exibe na div "dados"
+    data.forEach(function(item) {
+      var elemento = $('<p>').text(JSON.stringify(item));
+      $('#dados').append(elemento);
+    });
+  }
+
+  // Chama a função obterDados quando a página é carregada
+//   $(document).ready(function() {
+//     obterDados();
+//   });
+
 function renderStockChart(labels, data) {
     const ctx = document.getElementById('stockChart').getContext('2d');
     const stockChart = new Chart(ctx, {

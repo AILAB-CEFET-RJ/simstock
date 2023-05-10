@@ -5,7 +5,8 @@
     <title>SIMSTOCK</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Inclua o Chart.js aqui -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -15,6 +16,10 @@
         <input type="text" id="searchInput" placeholder="Buscar ações..."> <!-- Adicione um ID ao elemento input para referenciá-lo em JavaScript -->
         <button type="submit">Buscar</button> <!-- Adicione um botão de envio -->
     </form>
+
+    <!-- Aqui poderemos mostrar os dados cosumidos do BD na tela e posteriormente utilizar isso para gerar o grafico customizado -->
+    <!-- <div id="dados"></div> -->
+
 
     <div id="stockList">
         <h2>Lista de Ações: AAPL</h2>
