@@ -6,6 +6,8 @@ services:
     container_name: meu-mltradingstocks
     networks:
       - simstock
+    volumes:
+      - C:\docker\mltradingstocks_data:/data	
 
   postgresql:
     image: postgres

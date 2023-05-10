@@ -12,5 +12,6 @@ dependencies:
   - pandas
   - numpy
   - pip
+  - psycopg2
   - pip:
     - stable-baselines3

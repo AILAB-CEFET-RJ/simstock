@@ -103,4 +103,17 @@ docker stop meu-postgresql
 docker stop meu-pgadmin
 ```
 
+### 6. Verificar ip do Windows dentro do Ubuntu WSL:
+```bash
+cat /etc/resolv.conf | grep nameserver | awk '{print $2}'
+```
+
+### UI
+É necessário executar o comando npm i chart.js para instalação da dependência
+
+### Backend
+É necessário executar o comando npm i express para instalação da dependência
+É necessário executar o comando npm i pg para instalação da dependência
+Para executar o Backend: va até a pasta UI e execute - node server.js
+
 Isso irá parar o container sem removê-lo. Os dados do banco de dados PostgreSQL serão mantidos no diretório C:\docker\postgresql_data e estarão disponíveis novamente quando o container for iniciado novamente com o comando docker start.
