@@ -32,8 +32,8 @@ def SalvarDadosCSVNoBD(files_training, is_test):
             print("Iniciou conexão com o Banco de Dados")
             # estabelece a conexão com o banco de dados
             conn = psycopg2.connect(
-                host="172.19.208.1", # para descobrir o IP do Windows no Ubuntu via WSL2 execute no Ubuntu: cat /etc/resolv.conf | grep nameserver | awk '{print $2}'
-                database="dados_simstock",
+                host="localhost", # para descobrir o IP do Windows no Ubuntu via WSL2 execute no Ubuntu: cat /etc/resolv.conf | grep nameserver | awk '{print $2}'
+                database="simstock_database",
                 user="postgres",
                 password="suasenha",
                 port='5432'

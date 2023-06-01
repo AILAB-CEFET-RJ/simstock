@@ -7,15 +7,22 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 </head>
 
 <body>
     <h1 class="title">SIMSTOCK</h1>
 
-    <form id="searchForm"> <!-- Adicione um ID ao elemento form para referenciá-lo em JavaScript -->
-        <input type="text" id="searchInput" placeholder="Buscar ações..."> <!-- Adicione um ID ao elemento input para referenciá-lo em JavaScript -->
-        <button type="submit">Buscar</button> <!-- Adicione um botão de envio -->
-    </form>
+    <div class="container">
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Selecione uma ação
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="dropdownOptions">
+    
+          </div>
+        </div>
+    </div>
 
     <!-- Aqui poderemos mostrar os dados cosumidos do BD na tela e posteriormente utilizar isso para gerar o grafico customizado -->
     <!-- <div id="dados"></div> -->
@@ -23,10 +30,10 @@
 
     <div id="stockList">
         <h2>Lista de Ações: AAPL</h2>
-        <ul id="stockItems">
+        <canvas id="grafico"></canvas>
+        <!-- <ul id="stockItems">
             <canvas id="stockChart"></canvas>
-            <!-- Aqui é onde a lista de ações será exibida dinamicamente usando JavaScript -->
-        </ul>
+        </ul> -->
     </div>
 
     <div id="buyForm">
@@ -52,6 +59,8 @@
     </div>
 
     <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
 
 </html>

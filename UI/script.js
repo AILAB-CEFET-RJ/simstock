@@ -28,12 +28,48 @@ function sellStock(event) {
 }
 
 //Função para consumir os dados do BD
-function obterDados() {
+
+// function obterDados() {
+//     $.ajax({
+//       url: 'http://localhost:3000/dados',
+//       type: 'GET',
+//       success: function(data) {
+//         exibirDados(data); // Chama a função exibirDados para mostrar os dados recebidos
+//       },
+//       error: function(xhr, status, error) {
+//         console.error('Erro na requisição:', error);
+//       }
+//     });
+//   }
+
+//   function exibirDados(data) {
+//     // Limpa o conteúdo atual da div "dados"
+//     $('#dados').empty();
+
+//     // Itera sobre os dados recebidos e os exibe na div "dados"
+//     data.forEach(function(item) {
+//       var elemento = $('<p>').text(JSON.stringify(item));
+//       $('#dados').append(elemento);
+//     });
+//   }
+
+  // Chama a função obterDados quando a página é carregada
+//   $(document).ready(function() {
+//     obterDados();
+//   });
+
+function obterDadosEAtualizarGrafico() {
     $.ajax({
       url: 'http://localhost:3000/dados',
       type: 'GET',
       success: function(data) {
-        exibirDados(data); // Chama a função exibirDados para mostrar os dados recebidos
+        var dropdownOptions = $('#dropdownOptions'); // Seleciona o elemento do dropdown
+        dropdownOptions.empty();
+        criarGrafico(data); // Chama a função criarGrafico com os dados recebidos
+        data.forEach(function(item) {
+          var option = $('<a>').addClass('dropdown-item').attr('href', '#').text(item.ticker);
+          dropdownOptions.append(option);
+        });
       },
       error: function(xhr, status, error) {
         console.error('Erro na requisição:', error);
@@ -41,21 +77,62 @@ function obterDados() {
     });
   }
 
-  function exibirDados(data) {
-    // Limpa o conteúdo atual da div "dados"
-    $('#dados').empty();
+  function criarGrafico(data) {
+    var labels = []; // Array para armazenar os rótulos no eixo x (tempo)
+    var valores = []; // Array para armazenar os valores no eixo y (preço)
 
-    // Itera sobre os dados recebidos e os exibe na div "dados"
+    // Itera sobre os dados recebidos e preenche os arrays de rótulos e valores
     data.forEach(function(item) {
-      var elemento = $('<p>').text(JSON.stringify(item));
-      $('#dados').append(elemento);
+      labels.push(item.time_minute); // Substitua "tempo" pelo nome da propriedade do objeto JSON que contém o valor do tempo
+      valores.push(item.prices); // Substitua "preco" pelo nome da propriedade do objeto JSON que contém o valor do preço
+    });
+
+    // Obtém o contexto do canvas
+    var ctx = document.getElementById('grafico').getContext('2d');
+
+    // Cria o gráfico
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Preço',
+          data: valores,
+          borderColor: 'blue',
+          fill: false
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          x: {
+            display: true,
+            title: {
+              display: true,
+              text: 'Tempo' // Rótulo do eixo x
+            }
+          },
+          y: {
+            display: true,
+            title: {
+              display: true,
+              text: 'Preço' // Rótulo do eixo y
+            }
+          }
+        }
+      }
     });
   }
 
-  // Chama a função obterDados quando a página é carregada
-//   $(document).ready(function() {
-//     obterDados();
-//   });
+  // $(document).ready(function() {
+  //   obterDadosEAtualizarGrafico(); // Chama a função obterDadosEAtualizarGrafico quando a página é carregada
+
+  //   // Atualiza o gráfico a cada 2 minutos
+  //   setInterval(function() {
+  //     obterDadosEAtualizarGrafico();
+  //   }, 120000); // 2 minutos em milissegundos
+  // });
+
 
 function renderStockChart(labels, data) {
     const ctx = document.getElementById('stockChart').getContext('2d');
@@ -147,6 +224,7 @@ function venderAcao(valorAcao) {
 }   
 
 getStockData();
+obterDadosEAtualizarGrafico();
 
 
 
