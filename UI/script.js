@@ -72,7 +72,6 @@ function obterDadosEAtualizarGrafico(acao) {
     });
   }
 
-
   function criarGrafico(data) {
     var labels = []; // Array para armazenar os rótulos no eixo x (tempo)
     var valores = []; // Array para armazenar os valores no eixo y (preço)
@@ -183,8 +182,6 @@ function venderAcao(valorAcao, qtdAcoes) {
             console.error('Erro ao salvar valores:', error);
           }
         });
-
-
 }   
 
 function atualizarSaldo() {
