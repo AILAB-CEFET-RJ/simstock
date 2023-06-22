@@ -75,12 +75,26 @@ function obterDadosEAtualizarGrafico(acao) {
   function criarGrafico(data) {
     var labels = []; // Array para armazenar os rótulos no eixo x (tempo)
     var valores = []; // Array para armazenar os valores no eixo y (preço)
-
+    var dataAux;
+    
     // Itera sobre os dados recebidos e preenche os arrays de rótulos e valores
-    data.forEach(function(item) {
-      labels.push(item.time_minute); // Substitua "tempo" pelo nome da propriedade do objeto JSON que contém o valor do tempo
-      valores.push(item.prices); // Substitua "preco" pelo nome da propriedade do objeto JSON que contém o valor do preço
-    });
+    for (let i = (data.length - 1); i > 0; i--) {
+      debugger;
+      
+      const item = data[i];
+      const dataHora = moment(item.file_date).locale('pt-br');
+      const dataHoraFormatada = dataHora.format('DD/MM/YYYY HH:mm:ss');
+      
+      if (dataHoraFormatada !== dataAux || i == 1) {
+        dataAux = dataHoraFormatada;
+        labels.push(dataHoraFormatada);
+      }
+      else{
+        labels.push("");
+      }
+      
+      valores.push(item.prices);
+    }
 
     // Obtém o contexto do canvas
     var ctx = document.getElementById('grafico').getContext('2d');
@@ -128,9 +142,12 @@ function comprarAcao(valorAcao, qtdAcoes) {
 
     if (saldo >= valorTotal) {
         saldo -= valorTotal; // Deduzir o valor da ação do saldo
-
+        
+        idOffer = $("#dropdownMenuButton").text();
+        debugger;
         const data = {
           qtdcota: qtdAcoes,
+          idoffer: idOffer,
           preco: valorAcao,
           timestamp: new Date().toISOString(),
           tipooffer: TipoOperacao.Compra
@@ -145,6 +162,7 @@ function comprarAcao(valorAcao, qtdAcoes) {
             console.log('Valores salvos com sucesso:', result);
             alert(`Ação comprada! Saldo restante: R$ ${saldo.toFixed(2)}`);
             atualizarSaldo();
+            buscarHistoricoDeCompraVenda();
           },
           error: function(error) {
             console.error('Erro ao salvar valores:', error);
@@ -158,12 +176,15 @@ function comprarAcao(valorAcao, qtdAcoes) {
 }   
 
 function venderAcao(valorAcao, qtdAcoes) {
+        debugger;
         valorTotal = valorAcao * qtdAcoes;
         saldo += valorTotal; // Deduzir o valor da ação do saldo
+        idOffer = $("#dropdownMenuButton").text();
 
         const data = {
           qtdcota: qtdAcoes,
           preco: valorAcao,
+          idoffer: idOffer,
           timestamp: new Date().toISOString(),
           tipooffer: TipoOperacao.Venda
         };
@@ -177,6 +198,7 @@ function venderAcao(valorAcao, qtdAcoes) {
             console.log('Valores salvos com sucesso:', result);
             alert(`Ação vendida! Saldo restante: R$ ${saldo.toFixed(2)}`);
             atualizarSaldo();
+            buscarHistoricoDeCompraVenda();
           },
           error: function(error) {
             console.error('Erro ao salvar valores:', error);
@@ -184,10 +206,56 @@ function venderAcao(valorAcao, qtdAcoes) {
         });
 }   
 
+function buscarHistoricoDeCompraVenda(){
+  $.ajax({
+    url: 'http://localhost:3000/historicoCompraVenda',
+    type: 'GET',
+    success: function(data) {
+      preencherTabela(data);
+    },
+    error: function(xhr, status, error) {
+      console.error('Erro na requisição:', error);
+    }
+  });
+}
+
+// Function to fill the table with data
+function preencherTabela(dados) {
+
+  const tableBody = $('#historico-table tbody');
+
+  // Clear the current content of the table
+  tableBody.empty();
+
+  // Fill the table with the retrieved data
+  dados.forEach(item => {
+    // Create a new row in the table
+    const row = $('<tr>');
+
+    const dataHora = moment(item.timestamp).locale('pt-br');
+    const dataHoraFormatada = dataHora.format('DD/MM/YYYY HH:mm:ss');
+
+    // Create the cells and set the content
+    const nomeCell = $('<td>').text(item.idoffer);
+    const valorCell = $('<td>').text(item.preco);
+    const tipoCell = $('<td>').text(item.tipoffer);
+    const horaCell = $('<td>').text(dataHoraFormatada);
+    const quantidadeCell = $('<td>').text(item.qtdcota);
+
+    // Append the cells to the row
+    row.append(nomeCell, valorCell, tipoCell, horaCell, quantidadeCell);
+
+    // Append the row to the table body
+    tableBody.append(row);
+  });
+}
+
 function atualizarSaldo() {
   $('#saldo').text(`R$${saldo.toFixed(2)}`);
 }
 
 atualizarSaldo();
 obterDadosAcoes();
+debugger;
+buscarHistoricoDeCompraVenda();
 
