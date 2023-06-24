@@ -39,12 +39,11 @@ CREATE TABLE tblOffer (
 
 CREATE TABLE tblOfferHist (
   idHist SERIAL PRIMARY KEY,
-  idOffer INT,
+  idOffer VARCHAR(255),
   qtdCota INT,
   preco VARCHAR(255),
   timeStamp TIMESTAMP,
-  tipoOffer VARCHAR(255),
-  FOREIGN KEY (idOffer) REFERENCES tblOffer(idOffer)
+  tipoOffer INT,
 );
 
 -- Inserir as ações
