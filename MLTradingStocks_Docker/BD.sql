@@ -43,6 +43,10 @@ CREATE TABLE tblOfferHist (
   qtdCota INT,
   preco VARCHAR(255),
   timeStamp TIMESTAMP,
-  tipoOffer SMALLINT,
+  tipoOffer VARCHAR(255),
   FOREIGN KEY (idOffer) REFERENCES tblOffer(idOffer)
 );
+
+-- Inserir as ações
+INSERT INTO public.tblcompany (name)
+VALUES ('AAPL'), ('TSLA'), ('CSCO'), ('MSFT'), ('GE'), ('F'), ('TWTR'), ('C'), ('FCX'), ('BAC'), ('KO'), ('INTC'), ('GM'), ('AAL'), ('NCLH'), ('JPM'), ('PFE'), ('MS'), ('DAL'), ('NEM');
