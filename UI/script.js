@@ -234,15 +234,15 @@ function preencherTabela(dados) {
     // Create the cells and set the content
     const nomeCell = $('<td>').text(item.idoffer);
     const valorCell = $('<td>').text(item.preco);
-    const tipoCell = $('<td>').text(item.tipoffer);
+    const tipoCell = $('<td>').text(item.tipooffer === TipoOperacao.Compra ? "Compra" : "Venda");
     const horaCell = $('<td>').text(dataHoraFormatada);
     const quantidadeCell = $('<td>').text(item.qtdcota);
 
 
     if (item.tipooffer === TipoOperacao.Compra) {
-      tipoCell.addClass("compra");
+      row.addClass("compra");
     } else {
-      tipoCell.addClass("venda");
+      row.addClass("venda");
     }
 
     // Append the cells to the row
