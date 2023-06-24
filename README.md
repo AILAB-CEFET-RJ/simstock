@@ -5,7 +5,7 @@ A simulation system of stock market built for educational purposes.
 
 # Requisitos mínimos:
 
-1. Para que seja possível exercutar tudo que possui nesta documentação é necessário ter instalado em seu sistema operacional o [Docker](https://docs.docker.com/desktop/install/windows-install/).
+1. Para que seja possível exercutar tudo que possui nesta documentação é necessário ter instalado em seu sistema operacional o [Docker](https://docs.docker.com/desktop/install/windows-install/); Node e Postgres
 
 2. Todos os códigos disponibilizado nesta documentação foi executado no [PowerShell 7](https://learn.microsoft.com/pt-br/powershell/scripting/install/installing-powershell-on-windows?view=powershell-7.3) e no Sistema Operacional Windows, a execução em outros terminais de comando podem necessitar de alterações.
 
