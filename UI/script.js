@@ -238,6 +238,13 @@ function preencherTabela(dados) {
     const horaCell = $('<td>').text(dataHoraFormatada);
     const quantidadeCell = $('<td>').text(item.qtdcota);
 
+
+    if (item.tipooffer === TipoOperacao.Compra) {
+      tipoCell.addClass("compra");
+    } else {
+      tipoCell.addClass("venda");
+    }
+
     // Append the cells to the row
     row.append(nomeCell, valorCell, tipoCell, horaCell, quantidadeCell);
 
