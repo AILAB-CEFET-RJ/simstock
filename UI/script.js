@@ -23,7 +23,6 @@ function buyStock(event) {
     const stockSymbol = document.getElementById('stockSymbol').value;
     const stockQuantity = document.getElementById('stockQuantity').value;
     addStockItem(stockSymbol, stockQuantity);
-    debugger;
     comprarAcao(stockSymbol, stockQuantity);  
     buyStockForm.reset();
 }
@@ -79,7 +78,6 @@ function obterDadosEAtualizarGrafico(acao) {
     
     // Itera sobre os dados recebidos e preenche os arrays de rótulos e valores
     for (let i = (data.length - 1); i > 0; i--) {
-      debugger;
       
       const item = data[i];
       const dataHora = moment(item.file_date).locale('pt-br');
@@ -144,7 +142,6 @@ function comprarAcao(valorAcao, qtdAcoes) {
         saldo -= valorTotal; // Deduzir o valor da ação do saldo
         
         idOffer = $("#dropdownMenuButton").text();
-        debugger;
         const data = {
           qtdcota: qtdAcoes,
           idoffer: idOffer,
@@ -176,7 +173,6 @@ function comprarAcao(valorAcao, qtdAcoes) {
 }   
 
 function venderAcao(valorAcao, qtdAcoes) {
-        debugger;
         valorTotal = valorAcao * qtdAcoes;
         saldo += valorTotal; // Deduzir o valor da ação do saldo
         idOffer = $("#dropdownMenuButton").text();
@@ -256,6 +252,5 @@ function atualizarSaldo() {
 
 atualizarSaldo();
 obterDadosAcoes();
-debugger;
 buscarHistoricoDeCompraVenda();
 

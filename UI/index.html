@@ -12,85 +12,85 @@
 
 <body>
     <header class="header">
-        <div class="header-left">
-            <h1 class="title">SIMSTOCK</h1>
-        </div>
-
-        <div class="header-right">
-            <h2 id="saldo"></h2>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h1 class="title">SIMSTOCK</h1>
+                </div>
+                <div class="col-md-6 text-right">
+                    <h2 id="saldo"></h2>
+                </div>
+            </div>
         </div>
     </header>
 
     <div class="container">
-        <div class="content m-3">
-            <div class="left-column border rounded p-4">
-                <div class="dropdown text-center">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Selecione uma ação
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="dropdownOptions">
-
+        <div class="content mt-3">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="dropdown text-center">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Selecione uma ação
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="dropdownOptions"></div>
                     </div>
-                </div>
-            
-                <div id="stockList"  class="mt-3">
-                    <h2>Lista de Ações: <label id="acao"></label></h2>
 
-                    <canvas id="grafico"></canvas>
-                </div>
-                
-                <table id="historico-table">
-                    <thead>
-                      <tr>
-                        <th>Nome da Ação</th>
-                        <th>Valor</th>
-                        <th>Tipo</th>
-                        <th>Hora</th>
-                        <th>Quantidade</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <!-- Dados serão preenchidos dinamicamente aqui -->
-                    </tbody>
-                  </table>
-                
-            </div>
-        
-            <div class="right-column">
-                <div id="form" class="text-center border rounded p-4">
-                    <h2>Compra de Ações</h2>
-                    <div id="stockForm" class="text-center">
-                        <div class="form-group">
-                            <label for="stockSymbol">Valor da Ação:</label>
-                            <input type="text" id="stockSymbol" name="stockSymbol" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="stockQuantity">Quantidade:</label>
-                            <input type="number" id="stockQuantity" name="stockQuantity" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <input id="btnCompra" type="button" value="Comprar" onclick="comprarAcao(stockSymbol.value, stockQuantity.value)" class="btn btn-primary">
-                        </div>
+                    <div id="stockList" class="mt-3">
+                        <h2>Lista de Ações: <label id="acao"></label></h2>
+                        <canvas id="grafico"></canvas>
                     </div>
+
+                    <table id="historico-table" class="table table-striped mt-3">
+                        <thead>
+                            <tr>
+                                <th>Nome da Ação</th>
+                                <th>Valor</th>
+                                <th>Tipo</th>
+                                <th>Hora</th>
+                                <th>Quantidade</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Dados serão preenchidos dinamicamente aqui -->
+                        </tbody>
+                    </table>
                 </div>
 
-                <div id="form" class="text-center border rounded p-4 mt-3">
-                    <h2>Venda de Ações</h2>
-                    <div id="stockForm" class="text-center">
-                        <div class="form-group">
-                            <label for="sellStockSymbol">Valor da Ação:</label>
-                            <input type="text" id="sellStockSymbol" name="sellStockSymbol" class="form-control" required>
+                <div class="col-md-6">
+                    <div id="form" class="text-center border rounded p-4">
+                        <h2>Compra de Ações</h2>
+                        <div id="stockForm" class="text-center">
+                            <div class="form-group">
+                                <label for="stockSymbol">Valor da Ação:</label>
+                                <input type="text" id="stockSymbol" name="stockSymbol" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="stockQuantity">Quantidade:</label>
+                                <input type="number" id="stockQuantity" name="stockQuantity" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <input id="btnCompra" type="button" value="Comprar" onclick="comprarAcao(stockSymbol.value, stockQuantity.value)" class="btn btn-primary">
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="sellStockQuantity">Quantidade:</label>
-                            <input type="number" id="sellStockQuantity" name="sellStockQuantity" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <input id="btnVenda" type="button" value="Vender" onclick="venderAcao(sellStockSymbol.value, sellStockQuantity.value)" class="btn btn-primary">
+                    </div>
+
+                    <div id="form" class="text-center border rounded p-4 mt-3">
+                        <h2>Venda de Ações</h2>
+                        <div id="stockForm" class="text-center">
+                            <div class="form-group">
+                                <label for="sellStockSymbol">Valor da Ação:</label>
+                                <input type="text" id="sellStockSymbol" name="sellStockSymbol" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="sellStockQuantity">Quantidade:</label>
+                                <input type="number" id="sellStockQuantity" name="sellStockQuantity" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <input id="btnVenda" type="button" value="Vender" onclick="venderAcao(sellStockSymbol.value, sellStockQuantity.value)" class="btn btn-primary">
+                            </div>
                         </div>
                     </div>
                 </div>
-                
             </div>
         </div>
     </div>
@@ -98,5 +98,11 @@
     <script src="script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Simstock. Todos os direitos reservados.</p>
+        </div>
+    </footer>
 </body>
 </html>
