@@ -1,0 +1,5 @@
+*_html
+.vscode
+*.csv
+log_de_erros.txt
+resultado_analise_2.txt
